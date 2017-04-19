@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\ad4ma\AndroidStudioProjects\Bogyo\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="22fbcae82b732eeb7ef1ccb551b85c68974b9772">
+        <dex dex="C:\Users\ad4ma\AndroidStudioProjects\Bogyo\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_942d2dbcf83f2985c0f61afc7c6028ce54f1aeaf\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\ad4ma\AndroidStudioProjects\Bogyo\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="C:\Users\ad4ma\AndroidStudioProjects\Bogyo\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_e985b2fcf1e02b1228a634d7ccc63aac61cc54e1\classes.dex" />
+    </item>
+
+</items>

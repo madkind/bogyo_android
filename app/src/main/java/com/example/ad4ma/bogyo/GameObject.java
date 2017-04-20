@@ -28,7 +28,6 @@ public abstract class GameObject {
         return this.y;
     }
 
-
     public int getHeight() {
         return height;
     }
@@ -37,7 +36,7 @@ public abstract class GameObject {
         return width;
     }
 
-    public  void Modify_Y(int i){
+    public  void modY(int i){
         y+=i;
     }
 

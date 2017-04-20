@@ -16,8 +16,6 @@ import android.graphics.Point;
             ConfigurationManager.screenSize = screenSize;
         }
 
-
-
     public static Point getScreenSize() {
         return screenSize;
     }

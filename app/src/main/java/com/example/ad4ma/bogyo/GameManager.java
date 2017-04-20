@@ -16,7 +16,6 @@ public class GameManager {
 
     public GameManager(){
         gameObjects = new ArrayList<>();
-        //left top right bottom
         int tileCount = 5;
 
         int screenHeight = ConfigurationManager.getScreenSize().y;

@@ -30,7 +30,7 @@ public class TileObject extends GameObject{
     }
 
     public void update()  {
-        this.Modify_Y(+3);
+        this.modY(+3);
 
         if (y >ConfigurationManager.getScreenSize().y) {
             setY(0);

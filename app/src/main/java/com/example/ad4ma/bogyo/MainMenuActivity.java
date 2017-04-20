@@ -18,4 +18,9 @@ public class MainMenuActivity extends AppCompatActivity {
         Intent intent = new Intent(this, GameActvity.class);
         startActivity(intent);
     }
+
+    public void onHighscoreClick(View view) {
+        Intent intent = new Intent(this, HighScoreActivity.class);
+        startActivity(intent);
+    }
 }

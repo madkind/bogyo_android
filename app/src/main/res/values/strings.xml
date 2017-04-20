@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Bogyo</string>
+    <string name="title_activity_high_score">HighScore</string>
+    <string name="currentScore">Current Score: </string>
+    <string name="bestScore">Best score:</string>
+    <string name="menu">Menu</string>
+    <string name="playAgain">Play Again</string>
 </resources>

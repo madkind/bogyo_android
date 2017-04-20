@@ -23,7 +23,8 @@ public class GameManager {
         int iter = 0;
 
         while(tileCount>iter)
-            tiles.add(new TileObject(0,iter++*(screenheight/tileCount),60,10));
+            tiles.add(new TileObject(0,iter++*(screenheight/tileCount),screenWidth,screenheight/30));
+
     }
 
     public void update() {

@@ -2,6 +2,7 @@ package com.example.ad4ma.bogyo;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -25,8 +26,7 @@ public class CanvasView extends SurfaceView implements SurfaceHolder.Callback {
     @Override
 
     protected void onDraw(Canvas canvas) {
-        // TODO Auto-generated method stub
-       // super.onDraw(canvas);
+        canvas.drawColor(Color.BLACK);
     }
 
     public void update() {
@@ -36,6 +36,7 @@ public class CanvasView extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void draw(Canvas canvas){
         super.draw(canvas);
+        canvas.drawColor(Color.BLACK);
 
        for ( int i = 0; i< gm.tiles.size();i++){
            gm.tiles.get(i).draw(canvas);

@@ -8,18 +8,15 @@ import android.graphics.Point;
  */
 
      class ConfigurationManager {
-        private static  Bitmap tileBitmap;
+
         private static Point screenSize;
 
         public static void Configure(Bitmap tileBitmap, Point screenSize)
         {
-            ConfigurationManager.tileBitmap = tileBitmap;
             ConfigurationManager.screenSize = screenSize;
         }
 
-    public static Bitmap getTileBitmap() {
-        return tileBitmap;
-    }
+
 
     public static Point getScreenSize() {
         return screenSize;

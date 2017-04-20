@@ -1,5 +1,7 @@
 package com.example.ad4ma.bogyo;
 
+import android.graphics.Canvas;
+
 /**
  * Created by ad4ma on 2017. 04. 19..
  */
@@ -43,4 +45,7 @@ public abstract class GameObject {
     {
         y = i;
     }
+
+    public abstract void draw(Canvas canvas);
+    public abstract void update();
 }

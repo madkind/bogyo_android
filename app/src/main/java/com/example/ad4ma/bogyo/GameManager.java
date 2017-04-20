@@ -11,25 +11,28 @@ public class GameManager {
 
     CanvasView cv;
 
-    ArrayList<TileObject> tiles;
+    ArrayList<GameObject> gameObjects;
+    PlayerObject player;
 
     public GameManager(){
-        tiles = new ArrayList<TileObject>();
+        gameObjects = new ArrayList<>();
         //left top right bottom
         int tileCount = 5;
 
-        int screenheight = ConfigurationManager.getScreenSize().y;
+        int screenHeight = ConfigurationManager.getScreenSize().y;
         int screenWidth = ConfigurationManager.getScreenSize().x;
         int iter = 0;
 
         while(tileCount>iter)
-            tiles.add(new TileObject(0,iter++*(screenheight/tileCount),screenWidth,screenheight/30));
+            gameObjects.add(new TileObject(0,iter++*(screenHeight/tileCount),screenWidth,screenHeight/30));
 
+        player =  new PlayerObject(500,500,200,200);
+        gameObjects.add(player);
     }
 
     public void update() {
-        for ( int i = 0; i< tiles.size();i++) {
-            tiles.get(i).update();
+        for ( int i = 0; i< gameObjects.size();i++) {
+            gameObjects.get(i).update();
         }
     }
 }

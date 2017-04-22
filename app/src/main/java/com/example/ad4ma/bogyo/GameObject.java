@@ -47,4 +47,8 @@ public abstract class GameObject {
 
     public abstract void draw(Canvas canvas);
     public abstract void update();
+
+    public void modX(double verticalSpeed) {
+        this.x+=verticalSpeed;
+    }
 }

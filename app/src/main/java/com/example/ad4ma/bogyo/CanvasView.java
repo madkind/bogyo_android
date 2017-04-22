@@ -37,13 +37,8 @@ public class CanvasView extends SurfaceView implements SurfaceHolder.Callback {
     public void draw(Canvas canvas){
         super.draw(canvas);
         canvas.drawColor(Color.BLACK);
-       for ( int i = 0; i< gm.gameObjects.size()-1;i++){
+       for ( int i = 0; i< gm.gameObjects.size();i++){
            gm.gameObjects.get(i).draw(canvas);
-        }
-        //perpill csak azert nem gameobjectkent kezelem, mert csak akkor akarom kirajzolni a playert,
-        // amikor nem er egy tilehoz sem a player (teszt)
-        if (!gm.player.collidionWithTile(gm.gameObjects)){
-            gm.player.draw(canvas);
         }
     }
     // Implements method of SurfaceHolder.Callback

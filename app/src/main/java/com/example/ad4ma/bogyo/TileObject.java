@@ -29,7 +29,7 @@ public class TileObject extends GameObject{
     }
 
     public void update()  {
-        this.modY(-10);
+        this.modY(-ConfigurationManager.getTileSpeed());
 
         if (y < 0)
             setY(ConfigurationManager.getScreenSize().y);

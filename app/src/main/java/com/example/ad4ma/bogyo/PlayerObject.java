@@ -4,52 +4,44 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-import java.util.ArrayList;
-
 /**
  * Created by hallgato on 2017-04-20.
  */
 
 public class PlayerObject extends GameObject {
-    public int speed;
+
+    GameManager gm;
+    double verticalSpeed;
+
     Paint p;
-    public PlayerObject(int x, int y, int radius) {
+    public PlayerObject(int x, int y, int radius, GameManager gm) {
         super(x, y, radius, radius);
+        this.gm = gm;
         p = new Paint();
         p.setColor(Color.YELLOW);
-
     }
 
     @Override
     public void draw(Canvas canvas) {
-       // canvas.save();
-      // canvas.translate(getX(),getY());
-       // canvas.drawCircle(0,0,getWidth()/2,p);
-       // canvas.restore();
-
         canvas.drawCircle(getX(),getY(),getRadius(),p);
     }
 
     @Override
     public void update() {
-
+        if (!collisionWithTile()) {
+            verticalSpeed = verticalSpeed + 9.8 / 5;
+        } else {
+            verticalSpeed = - ConfigurationManager.getTileSpeed();
+        }
+        this.modY((int)verticalSpeed);
     }
 
-    public void moveLeft(){
-        if (getY()>0)
-            this.y-=speed;
-    }
-    public void moveRight(){
-        if (getY()<1000)
-            this.y+=speed;
-    }
     public int getRadius(){
         return this.getWidth()/2;
     }
 
-    public boolean collisionWithTile(ArrayList<GameObject> gameObjects){
-        for ( GameObject go : gameObjects){
-
+    public boolean collisionWithTile(){
+        for ( GameObject go : gm.gameObjects){
             if(go.getClass() == TileObject.class){
                 if (collisionWithRect( ((TileObject)go).getLeftRec())  ||
                     collisionWithRect( ((TileObject)go).getRightRec()))
@@ -58,7 +50,7 @@ public class PlayerObject extends GameObject {
         }
         return false;
     }
-    //TODO gap
+
      private boolean collisionWithRect(Rectangle rect){
          float distX = Math.abs(this.getX() - rect.getX()-rect.getWidth()/2);
          float distY = Math.abs(this.getY()- rect.getY()-rect.getHeight()/2);

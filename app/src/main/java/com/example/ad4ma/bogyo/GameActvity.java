@@ -1,7 +1,5 @@
 package com.example.ad4ma.bogyo;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,12 +13,12 @@ public class GameActvity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Bitmap tileBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.tile);
+        //Bitmap tileBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.tile);
         Display display = getWindowManager().getDefaultDisplay();
         Point size = new Point();
         display.getSize(size);
 
-        ConfigurationManager.Configure(tileBitmap, size);
+        ConfigurationManager.Configure(size,10);
         CanvasView cv = new CanvasView(this);
         setContentView(cv);
     }

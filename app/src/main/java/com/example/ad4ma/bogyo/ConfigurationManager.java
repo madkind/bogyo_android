@@ -1,6 +1,5 @@
 package com.example.ad4ma.bogyo;
 
-import android.graphics.Bitmap;
 import android.graphics.Point;
 
 /**
@@ -11,12 +10,16 @@ import android.graphics.Point;
 
         private static Point screenSize;
 
-        public static void Configure(Bitmap tileBitmap, Point screenSize)
+    private static int tileSpeed;
+
+        public static void Configure(Point screenSize, int tileSpeed)
         {
             ConfigurationManager.screenSize = screenSize;
+            ConfigurationManager.tileSpeed = tileSpeed;
         }
 
     public static Point getScreenSize() {
         return screenSize;
     }
+    public static int getTileSpeed() { return tileSpeed; }
 }

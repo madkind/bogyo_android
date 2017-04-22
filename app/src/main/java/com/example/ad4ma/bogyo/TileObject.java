@@ -28,6 +28,7 @@ public class TileObject extends GameObject{
 
     public void generateGaps() {
         gapStart = rand.nextInt(width - width/4);
+
         gapEnd = gapStart+width/4;
     }
 

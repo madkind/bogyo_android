@@ -14,7 +14,6 @@ class GameManager {
     GameManager(){
         gameObjects = new ArrayList<>();
         int tileCount = 5;
-
         int screenHeight = ConfigurationManager.getScreenHeight();
         int screenWidth = ConfigurationManager.getScreenWidth();
         int iter = 0;

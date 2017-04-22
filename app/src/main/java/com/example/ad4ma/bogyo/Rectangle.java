@@ -4,32 +4,33 @@ package com.example.ad4ma.bogyo;
  * Created by ad4ma on 2017. 04. 22..
  */
 
-public class Rectangle {
+class Rectangle {
 
-    int x;
-    int y;
-    int width;
-    int height;
+    private final int x;
+    private final int y;
+    private final int width;
+    private final int height;
 
-    public Rectangle(int x, int y, int width, int height){
+    Rectangle(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
     }
-    public int getX() {
+
+    int getX() {
         return x;
     }
 
-    public int getY() {
+    int getY() {
         return y;
     }
 
-    public int getWidth() {
+    int getWidth() {
         return width;
     }
 
-    public int getHeight() {
+    int getHeight() {
         return height;
     }
 }

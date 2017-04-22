@@ -2,13 +2,8 @@ package com.example.ad4ma.bogyo;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.nfc.Tag;
 import android.os.Bundle;
-import android.os.Debug;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -16,7 +11,7 @@ import android.widget.TextView;
 import java.util.Random;
 
 public class HighScoreActivity extends AppCompatActivity {
-    private String PrefFileName = "Scores";
+    private final String PrefFileName = "Scores";
     private int best = 0;
     private int current = 0;
 
@@ -39,16 +34,16 @@ public class HighScoreActivity extends AppCompatActivity {
             this.best = current;
         }
 
-        TextView currentScoreView = (TextView)findViewById(R.id.currentScore);
+        TextView currentScoreView = (TextView) findViewById(R.id.currentScore);
         currentScoreView.setText(Integer.toString(this.current));
 
-        TextView bestScoreView = (TextView)findViewById(R.id.bestScore);
+        TextView bestScoreView = (TextView) findViewById(R.id.bestScore);
         bestScoreView.setText(Integer.toString(this.best));
 
     }
 
     public void onStartClick(View view) {
-        Intent intent = new Intent(this, GameActvity.class);
+        Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
     }
 
@@ -67,7 +62,7 @@ public class HighScoreActivity extends AppCompatActivity {
         SharedPreferences settings = getSharedPreferences(this.PrefFileName, 0);
         SharedPreferences.Editor editor = settings.edit();
         editor.putInt("BestScore", score);
-        editor.commit();
+        editor.apply();
     }
 
 }

@@ -5,8 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Display;
 
-public class GameActvity extends AppCompatActivity {
-
+public class GameActivity extends AppCompatActivity {
 
 
     @Override
@@ -18,7 +17,7 @@ public class GameActvity extends AppCompatActivity {
         Point size = new Point();
         display.getSize(size);
 
-        ConfigurationManager.Configure(size,5);
+        ConfigurationManager.Configure(size, 5);
         CanvasView cv = new CanvasView(this);
         setContentView(cv);
     }

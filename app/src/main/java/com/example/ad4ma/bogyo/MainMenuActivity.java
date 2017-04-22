@@ -14,12 +14,12 @@ public class MainMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
     }
 
-    public void onStartClick(View view) {
-        Intent intent = new Intent(this, GameActvity.class);
+    public void onStartClick(View v) {
+        Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
     }
 
-    public void onHighscoreClick(View view) {
+    public void onHighScoreClick(View v) {
         Intent intent = new Intent(this, HighScoreActivity.class);
         startActivity(intent);
     }

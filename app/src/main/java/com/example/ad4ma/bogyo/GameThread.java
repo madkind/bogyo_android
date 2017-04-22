@@ -1,67 +1,64 @@
 package com.example.ad4ma.bogyo;
 
-/**
- * Created by ad4ma on 2017. 04. 19..
+/*
+  Created by ad4ma on 2017. 04. 19..
  */
 
 
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
-public class GameThread extends Thread {
+class GameThread extends Thread {
 
+    private final CanvasView canvasView;
+    private final SurfaceHolder surfaceHolder;
     private boolean running;
-    private CanvasView canvasView;
-    private SurfaceHolder surfaceHolder;
 
-    public GameThread(CanvasView canvasView, SurfaceHolder surfaceHolder)  {
-        this.canvasView= canvasView;
-        this.surfaceHolder= surfaceHolder;
+    public GameThread(CanvasView canvasView, SurfaceHolder surfaceHolder) {
+        this.canvasView = canvasView;
+        this.surfaceHolder = surfaceHolder;
     }
 
     @Override
-    public void run()  {
+    public void run() {
         long startTime = System.nanoTime();
 
-        while(running)  {
-            Canvas canvas= null;
+        while (running) {
+            Canvas canvas = null;
             try {
 
                 canvas = this.surfaceHolder.lockCanvas();
 
-                synchronized (canvas)  {
+                synchronized (canvas) {
                     this.canvasView.update();
                     this.canvasView.draw(canvas);
                 }
-            }catch(Exception e)  {
-                // Do nothing.
+            } catch (Exception e) {
+                System.out.print(e.getLocalizedMessage());
             } finally {
-                if(canvas!= null)  {
-                    // Unlock Canvas.
+                if (canvas != null) {
                     this.surfaceHolder.unlockCanvasAndPost(canvas);
                 }
             }
-            long now = System.nanoTime() ;
-            // Interval to redraw game
-            // (Change nanoseconds to milliseconds)
-            long waitTime = (now - startTime)/100000000;
-            if(waitTime < 5)  {
-                waitTime= 5; // Millisecond.
+            long now = System.nanoTime();
+            long waitTime = (now - startTime) / 100000000;
+            if (waitTime < 5) {
+                waitTime = 5; // Millisecond.
             }
-            System.out.print(" Wait Time="+ waitTime);
+
+            System.out.print(" Wait Time=" + waitTime);
 
             try {
-                // Sleep.
-                this.sleep(waitTime);
-            } catch(InterruptedException e)  {
-
+                sleep(waitTime);
+            } catch (InterruptedException e) {
+                System.out.print(e.getLocalizedMessage());
             }
             startTime = System.nanoTime();
             System.out.print(".");
         }
     }
 
-    public void setRunning(boolean running)  {
-        this.running= running;
+    public void setRunning(boolean running) {
+        this.running = running;
     }
 }

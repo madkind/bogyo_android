@@ -12,8 +12,8 @@ import android.view.SurfaceView;
 
 public class CanvasView extends SurfaceView implements SurfaceHolder.Callback {
 
-    GameThread gt;
-    GameManager gm;
+    private GameThread gt;
+    private GameManager gm;
 
 
     public CanvasView(Context context) {
@@ -34,18 +34,19 @@ public class CanvasView extends SurfaceView implements SurfaceHolder.Callback {
     }
 
     @Override
-    public void draw(Canvas canvas){
+    public void draw(Canvas canvas) {
         super.draw(canvas);
         canvas.drawColor(Color.BLACK);
-       for ( int i = 0; i< gm.gameObjects.size();i++){
-           gm.gameObjects.get(i).draw(canvas);
+        for (int i = 0; i < gm.gameObjects.size(); i++) {
+            gm.gameObjects.get(i).draw(canvas);
         }
     }
+
     // Implements method of SurfaceHolder.Callback
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
         this.gm = new GameManager();
-        this.gt = new GameThread(this,holder);
+        this.gt = new GameThread(this, holder);
         this.gt.setRunning(true);
         this.gt.start();
     }
@@ -59,16 +60,17 @@ public class CanvasView extends SurfaceView implements SurfaceHolder.Callback {
     // Implements method of SurfaceHolder.Callback
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
-        boolean retry= true;
-        while(retry) {
+        boolean retry = true;
+        //noinspection ConstantConditions
+        while (retry) {
             try {
                 this.gt.setRunning(false);
                 // Parent thread must wait until the end of GameThread.
                 this.gt.join();
-            }catch(InterruptedException e)  {
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            retry= true;
+            retry = true;
         }
     }
 

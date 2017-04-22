@@ -1,78 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ad4ma.bogyo.HighScoreActivity"
-    android:background="@color/backgroundBlue">
+    android:background="@color/backgroundBlue"
+    tools:context="com.example.ad4ma.bogyo.HighScoreActivity">
 
     <TextView
+        android:id="@+id/currentScoreText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/currentScoreText"
-        android:textColor="@color/colorWhite"
-        android:textSize="30dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
-        android:text="@string/currentScore"/>
+        android:text="@string/currentScore"
+        android:textColor="@color/colorWhite"
+        android:textSize="30dp" />
+
     <TextView
+        android:id="@+id/currentScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/currentScoreText"
-        android:textColor="@color/colorWhite"
-        android:textSize="30dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="0dp"
-        android:id="@+id/currentScore"
-        android:text=""/>
+        android:text=""
+        android:textColor="@color/colorWhite"
+        android:textSize="30dp" />
+
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/bestScoreText"
-        android:textColor="@color/colorYellow"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:textSize="25dp"
-        android:layout_marginTop="50dp"
-        android:layout_below="@id/currentScore"
-        android:text="@string/bestScore"/>
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/bestScore"
-        android:textColor="@color/colorYellow"
+        android:layout_below="@id/currentScore"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:textSize="25dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginTop="50dp"
+        android:text="@string/bestScore"
+        android:textColor="@color/colorYellow"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/bestScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@id/bestScoreText"
-        android:text=""/>
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="50dp"
+        android:text=""
+        android:textColor="@color/colorYellow"
+        android:textSize="25dp" />
 
     <LinearLayout
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:orientation="horizontal"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/bestScore"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/bestScore">
+        android:orientation="horizontal">
+
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/bestScore"
-            android:text="@string/playAgain"
-            android:layout_marginRight="10dp"
-            android:padding="10dp"
             android:id="@+id/tryAgainButton"
-            android:onClick="onStartClick"/>
-        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/bestScore"
+            android:layout_marginRight="10dp"
+            android:onClick="onStartClick"
             android:padding="10dp"
-            android:text="@string/menu"
+            android:text="@string/playAgain" />
+
+        <Button
             android:id="@+id/menuButton"
-            android:onClick="onMenuClick"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/bestScore"
+            android:onClick="onMenuClick"
+            android:padding="10dp"
+            android:text="@string/menu" />
     </LinearLayout>
 
 </RelativeLayout>

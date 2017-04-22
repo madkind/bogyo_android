@@ -8,45 +8,47 @@ import android.graphics.Canvas;
 
 public abstract class GameObject {
 
-    protected int width;
-    protected int height;
-    protected int x;
-    protected int y;
+    final int width;
+    private final int height;
+    int y;
+    private int x;
 
-    public GameObject(int x, int y, int width, int height)  {
-        this.x= x;
-        this.y= y;
+    GameObject(int x, int y, int width, int height) {
+        this.x = x;
+        this.y = y;
         this.width = width;
-        this.height= height;
+        this.height = height;
     }
 
-    public int getX()  {
+    int getX() {
         return this.x;
     }
 
-    public int getY()  {
+    int getY() {
         return this.y;
     }
 
-    public int getHeight() {
-        return height;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public  void modY(int i){
-        y+=i;
-    }
-
-    public void setY(int i)
-    {
+    void setY(int i) {
         y = i;
     }
 
-    public void modX(int i) {this.x+=i;}
+    int getHeight() {
+        return height;
+    }
+
+    int getWidth() {
+        return width;
+    }
+
+    void modY(int i) {
+        y += i;
+    }
+
+    void modX(int i) {
+        this.x += i;
+    }
 
     public abstract void draw(Canvas canvas);
+
     public abstract void update();
 }

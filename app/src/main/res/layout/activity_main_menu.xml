@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.ad4ma.bogyo.MainMenuActivity"
-    android:background="@color/backgroundBlue">
+    android:background="@color/backgroundBlue"
+    tools:context="com.example.ad4ma.bogyo.MainMenuActivity">
 
     <TextView
         android:layout_width="wrap_content"
@@ -18,26 +17,27 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.v7.widget.AppCompatButton
-        android:layout_marginLeft="20dp"
-        android:layout_centerHorizontal="true"
-        android:padding="10dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="40dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:id="@+id/startButton"
-        android:background="@color/colorWhite"
-        android:text="START GAME"
-        android:onClick="onStartClick"/>
-    <android.support.v7.widget.AppCompatButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:padding="10dp"
-        android:id="@+id/highscoreButton"
+        android:layout_marginBottom="40dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
         android:background="@color/colorWhite"
+        android:onClick="onStartClick"
+        android:padding="10dp"
+        android:text="START GAME" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/highscoreButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/startButton"
-        android:text="HIGH SCORE"
-        android:onClick="onHighscoreClick"/>
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorWhite"
+        android:onClick="onHighScoreClick"
+        android:padding="10dp"
+        android:text="HIGH SCORE" />
 
 </RelativeLayout>

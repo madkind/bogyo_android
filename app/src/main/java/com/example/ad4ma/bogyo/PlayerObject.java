@@ -49,27 +49,30 @@ public class PlayerObject extends GameObject {
 
     public boolean collidionWithTile(ArrayList<GameObject> gameObjects){
         for ( GameObject go : gameObjects){
+
             if(go.getClass() == TileObject.class){
-                if (collidionWithTile((TileObject)go))
+                if (collidionWithTile( ((TileObject)go).getLeftRec())  ||
+                    collidionWithTile( ((TileObject)go).getRightRec()))
                     return true;
             }
         }
         return false;
     }
     //TODO gap
-     private boolean collidionWithTile(TileObject to){
-         float distX = Math.abs(this.getX() - to.getX()-to.getWidth()/2);
-         float distY = Math.abs(this.getY()- to.getY()-to.getHeight()/2);
+     private boolean collidionWithTile(Rectangle rect){
+         float distX = Math.abs(this.getX() - rect.getX()-rect.getWidth()/2);
+         float distY = Math.abs(this.getY()- rect.getY()-rect.getHeight()/2);
 
-         if (distX > (to.getWidth()/2 + this.getRadius())) { return false; }
-         if (distY > (to.getHeight()/2 + this.getRadius())) { return false; }
+         if (distX > (rect.getWidth()/2 + this.getRadius())) { return false; }
+         if (distY > (rect.getHeight()/2 + this.getRadius())) { return false; }
 
-         if (distX <= (to.getWidth()/2)) { return true; }
-         if (distY <= (to.getHeight()/2)) { return true; }
+         if (distX <= (rect.getWidth()/2)) { return true; }
+         if (distY <= (rect.getHeight()/2)) { return true; }
 
-         float dx=distX-to.getWidth()/2;
-         float dy=distY-to.getHeight()/2;
+         float dx=distX-rect.getWidth()/2;
+         float dy=distY-rect.getHeight()/2;
 
          return (dx*dx+dy*dy<=(getRadius()*getRadius()));
      }
+
 }

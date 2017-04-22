@@ -17,7 +17,6 @@ public class TileObject extends GameObject{
     int gapEnd;
     static Random rand = new Random();
 
-
     public TileObject(int x, int y, int width, int height) {
         super( x, y, width, height);
         p = new Paint();
@@ -25,26 +24,36 @@ public class TileObject extends GameObject{
         p.setColor(Color.BLUE);
 
         Random rand = new Random();
-        gapStart = rand.nextInt(width)-(width/10);
-        gapEnd = gapStart+width/10;
+        gapStart = rand.nextInt(width)-(width/4);
+        gapEnd = gapStart+width/4;
     }
 
     public void update()  {
-        this.modY(+3);
+        this.modY(-10);
 
-        if (y >ConfigurationManager.getScreenSize().y) {
-            setY(0);
-        }
+        if (y < 0)
+            setY(ConfigurationManager.getScreenSize().y);
     }
     public void draw(Canvas canvas)  {
+        Rectangle left = getLeftRec();
         canvas.save();
-        canvas.translate(getX(),getY());
-        canvas.drawRect(0,0,gapStart,getHeight(),p);
+        canvas.translate(left.getX(),left.getY());
+        canvas.drawRect(0,0,left.getWidth(),left.getHeight(),p);
         canvas.restore();
 
+        Rectangle right = getRightRec();
         canvas.save();
-        canvas.translate(getX()+gapEnd,getY());
-        canvas.drawRect(0,0,getWidth()-gapStart,getHeight(),p);
+        canvas.translate(right.getX(),getY());
+        canvas.drawRect(0,0,right.getWidth(),right.getHeight(),p);
         canvas.restore();
     }
+
+    public Rectangle getLeftRec() {
+        return new Rectangle(getX(),getY(),gapStart,getHeight());
+    }
+
+    public Rectangle getRightRec() {
+        return new Rectangle(getX()+gapEnd,getY(),getWidth()-gapStart,getHeight());
+    }
+
 }

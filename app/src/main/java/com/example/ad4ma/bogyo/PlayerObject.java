@@ -12,6 +12,7 @@ public class PlayerObject extends GameObject {
 
     GameManager gm;
     double verticalSpeed;
+    double horizontalSpeed = 20;
 
     Paint p;
     public PlayerObject(int x, int y, int radius, GameManager gm) {
@@ -28,27 +29,33 @@ public class PlayerObject extends GameObject {
 
     @Override
     public void update() {
-        if (!collisionWithTile()) {
-            verticalSpeed = verticalSpeed + 9.8 / 5;
+        if (collisingTile()!=null) {
+            this.setY(collisingTile().getY() - this.getRadius());
+            verticalSpeed = 0;
         } else {
-            verticalSpeed = - ConfigurationManager.getTileSpeed();
+            verticalSpeed = verticalSpeed + 9.8 / 5;
         }
         this.modY((int)verticalSpeed);
+
+        //mock horizontal movement
+        if (this.getX()< 100|| this.getX() > ConfigurationManager.getScreenSize().x-100)
+            this.horizontalSpeed = -this.horizontalSpeed;
+        this.modX((int)horizontalSpeed);
     }
 
     public int getRadius(){
         return this.getWidth()/2;
     }
 
-    public boolean collisionWithTile(){
+    public TileObject collisingTile(){
         for ( GameObject go : gm.gameObjects){
             if(go.getClass() == TileObject.class){
-                if (collisionWithRect( ((TileObject)go).getLeftRec())  ||
-                    collisionWithRect( ((TileObject)go).getRightRec()))
-                    return true;
+                if (collisionWithRect( ((TileObject)go).getLeftRec())
+                 || collisionWithRect( ((TileObject)go).getRightRec()))
+                return (TileObject)go;
             }
         }
-        return false;
+        return null;
     }
 
      private boolean collisionWithRect(Rectangle rect){

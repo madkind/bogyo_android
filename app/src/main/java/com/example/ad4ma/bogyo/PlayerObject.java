@@ -51,15 +51,15 @@ public class PlayerObject extends GameObject {
         for ( GameObject go : gameObjects){
 
             if(go.getClass() == TileObject.class){
-                if (collidionWithTile( ((TileObject)go).getLeftRec())  ||
-                    collidionWithTile( ((TileObject)go).getRightRec()))
+                if (collisionWithRect( ((TileObject)go).getLeftRec())  ||
+                    collisionWithRect( ((TileObject)go).getRightRec()))
                     return true;
             }
         }
         return false;
     }
     //TODO gap
-     private boolean collidionWithTile(Rectangle rect){
+     private boolean collisionWithRect(Rectangle rect){
          float distX = Math.abs(this.getX() - rect.getX()-rect.getWidth()/2);
          float distY = Math.abs(this.getY()- rect.getY()-rect.getHeight()/2);
 

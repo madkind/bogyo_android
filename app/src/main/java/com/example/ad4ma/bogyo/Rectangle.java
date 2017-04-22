@@ -30,7 +30,5 @@ class Rectangle {
         return width;
     }
 
-    int getHeight() {
-        return height;
-    }
+    int getHeight() { return height;}
 }

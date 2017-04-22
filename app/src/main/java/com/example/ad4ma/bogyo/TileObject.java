@@ -14,6 +14,15 @@ public class TileObject extends GameObject {
 
     private static final Random rand = new Random();
     private final Paint p;
+
+    public int getGapStart() {
+        return gapStart;
+    }
+
+    public int getGapEnd() {
+        return gapEnd;
+    }
+
     private int gapStart;
     private int gapEnd;
 
@@ -27,15 +36,17 @@ public class TileObject extends GameObject {
     }
 
     private void generateGaps() {
-        gapStart = rand.nextInt(width - width / 4);
-        gapEnd = gapStart + width / 4;
+        gapStart = rand.nextInt(width - width / 6);
+        gapEnd = gapStart + width / 6;
     }
 
     public void update() {
         this.modY(-ConfigurationManager.getTileSpeed());
 
-        if (y < 0)
+        if (y < 0){
             setY(ConfigurationManager.getScreenHeight());
+            generateGaps();
+        }
     }
 
     public void draw(Canvas canvas) {

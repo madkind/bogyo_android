@@ -47,7 +47,7 @@ public class PlayerObject extends GameObject {
         return this.getWidth()/2;
     }
 
-    public boolean collidionWithTile(ArrayList<GameObject> gameObjects){
+    public boolean collisionWithTile(ArrayList<GameObject> gameObjects){
         for ( GameObject go : gameObjects){
 
             if(go.getClass() == TileObject.class){

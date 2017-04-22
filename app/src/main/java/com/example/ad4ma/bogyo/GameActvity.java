@@ -18,7 +18,7 @@ public class GameActvity extends AppCompatActivity {
         Point size = new Point();
         display.getSize(size);
 
-        ConfigurationManager.Configure(size,10);
+        ConfigurationManager.Configure(size,5);
         CanvasView cv = new CanvasView(this);
         setContentView(cv);
     }

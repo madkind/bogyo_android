@@ -45,10 +45,8 @@ public abstract class GameObject {
         y = i;
     }
 
+    public void modX(int i) {this.x+=i;}
+
     public abstract void draw(Canvas canvas);
     public abstract void update();
-
-    public void modX(int speed) {
-        this.x+=speed;
-    }
 }

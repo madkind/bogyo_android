@@ -31,14 +31,14 @@ public class PlayerObject extends GameObject {
     public void update() {
         if (collisingTile()!=null) {
             this.setY(collisingTile().getY() - this.getRadius());
-            verticalSpeed = 0;
-        } else {
-            verticalSpeed = verticalSpeed + 9.8 / 5;
-        }
+            verticalSpeed =  - verticalSpeed / 2;
+        } //else {
+            verticalSpeed = verticalSpeed + 2;
+       // }
         this.modY((int)verticalSpeed);
 
         //mock horizontal movement
-        if (this.getX()< 100|| this.getX() > ConfigurationManager.getScreenSize().x-100)
+        if (this.getX()< 100|| this.getX() > ConfigurationManager.getScreenWidth()-100)
             this.horizontalSpeed = -this.horizontalSpeed;
         this.modX((int)horizontalSpeed);
     }

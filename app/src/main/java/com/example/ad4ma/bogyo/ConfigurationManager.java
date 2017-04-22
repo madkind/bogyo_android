@@ -18,8 +18,12 @@ import android.graphics.Point;
             ConfigurationManager.tileSpeed = tileSpeed;
         }
 
-    public static Point getScreenSize() {
-        return screenSize;
+
+    public static int getScreenHeight(){
+        return screenSize.y;
+    }
+    public static int getScreenWidth() {
+        return screenSize.x;
     }
     public static int getTileSpeed() { return tileSpeed; }
 }

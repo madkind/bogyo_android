@@ -23,8 +23,11 @@ public class TileObject extends GameObject{
         p.setStyle(Paint.Style.FILL);
         p.setColor(Color.BLUE);
 
-        Random rand = new Random();
-        gapStart = rand.nextInt(width)-(width/4);
+        generateGaps();
+    }
+
+    public void generateGaps() {
+        gapStart = rand.nextInt(width - width/4);
         gapEnd = gapStart+width/4;
     }
 
@@ -32,7 +35,7 @@ public class TileObject extends GameObject{
         this.modY(-ConfigurationManager.getTileSpeed());
 
         if (y < 0)
-            setY(ConfigurationManager.getScreenSize().y);
+            setY(ConfigurationManager.getScreenHeight());
     }
     public void draw(Canvas canvas)  {
         Rectangle left = getLeftRec();

@@ -37,8 +37,11 @@ public class CanvasView extends SurfaceView implements SurfaceHolder.Callback {
     public void draw(Canvas canvas){
         super.draw(canvas);
         canvas.drawColor(Color.BLACK);
-       for ( int i = 0; i< gm.gameObjects.size();i++){
+       for ( int i = 0; i< gm.gameObjects.size()-1;i++){
            gm.gameObjects.get(i).draw(canvas);
+        }
+        if (!gm.player.collidionWithTile(gm.gameObjects)){
+            gm.player.draw(canvas);
         }
     }
     // Implements method of SurfaceHolder.Callback

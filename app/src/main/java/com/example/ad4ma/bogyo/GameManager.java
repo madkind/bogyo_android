@@ -25,7 +25,7 @@ public class GameManager {
         while(tileCount>iter)
             gameObjects.add(new TileObject(0,iter++*(screenHeight/tileCount),screenWidth,screenHeight/30));
 
-        player =  new PlayerObject(500,500,200,200);
+        player =  new PlayerObject(500,500,100);
         gameObjects.add(player);
     }
 

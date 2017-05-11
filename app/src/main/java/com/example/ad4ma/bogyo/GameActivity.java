@@ -21,24 +21,4 @@ public class GameActivity extends AppCompatActivity {
          cv = new CanvasView(this);
         setContentView(cv);
     }
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        cv.Pause();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        cv.Resume();
-    }
-
-
-
-
 }

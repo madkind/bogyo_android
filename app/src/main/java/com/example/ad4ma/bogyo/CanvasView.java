@@ -69,14 +69,4 @@ public class CanvasView extends SurfaceView implements SurfaceHolder.Callback {
         }
     }
 
-    public void Pause() {
-        if(this.gt!=null) {
-            this.gt.setRunning(false);
-        }
-    }
-
-    public void Resume(){
-        if(this.gt!=null)
-        this.gt.setRunning(true);
-    }
 }

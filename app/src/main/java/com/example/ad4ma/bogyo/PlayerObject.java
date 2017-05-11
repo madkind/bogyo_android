@@ -9,7 +9,9 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Build;
+import android.os.Debug;
 import android.support.annotation.RequiresApi;
+import android.util.Log;
 
 /**
  * Created by hallgato on 2017-04-20.
@@ -62,7 +64,7 @@ public class PlayerObject extends GameObject implements SensorEventListener {
             this.setY(ConfigurationManager.getScreenHeight()/2);
             return;
         }
-
+        //TODO booster felvételét megoldani
         if (collision(nextTile)) {
             this.setY(nextTile.getY() - this.getRadius());
 
@@ -73,7 +75,7 @@ public class PlayerObject extends GameObject implements SensorEventListener {
 
         } else {
 
-        verticalSpeed = verticalSpeed + 10;
+            verticalSpeed = verticalSpeed + 5;
             this.modY((int) verticalSpeed);
          }
 
@@ -81,7 +83,7 @@ public class PlayerObject extends GameObject implements SensorEventListener {
         /*if (this.getX() < 200 || this.getX() > ConfigurationManager.getScreenWidth() - 200)
             this.horizontalSpeed = -this.horizontalSpeed;
         this.modX((int) horizontalSpeed);*/
-        this.modX((int)speedfromsensor*3);
+        this.modX((int)speedfromsensor*-4);
     }
 
     private int getRadius() {
@@ -137,14 +139,14 @@ public class PlayerObject extends GameObject implements SensorEventListener {
     }
 
     public boolean isAlive() {
-        return alive;
+        return this.alive;
     }
 
 
     @Override
     public void onSensorChanged(SensorEvent event) {
         //update((int)event.values[2]);
-        speedfromsensor=event.values[2];
+        speedfromsensor=event.values[0];
     }
 
     @Override

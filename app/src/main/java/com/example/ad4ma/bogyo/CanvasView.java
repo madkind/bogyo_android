@@ -1,8 +1,10 @@
 package com.example.ad4ma.bogyo;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -31,6 +33,16 @@ public class CanvasView extends SurfaceView implements SurfaceHolder.Callback {
 
     public void update() {
         gm.update();
+        if(!gm.player.isAlive())
+        {
+            gt.setRunning(false);
+            Intent intent = new Intent(super.getContext(), HighScoreActivity.class);
+            Bundle b = new Bundle();
+            //TODO nem jó a pont számolás valamiért. ki kell debugolni
+            b.putInt("key", (int) ((System.nanoTime() - gt.startTime )/1000000));
+            intent.putExtras(b);
+            super.getContext().startActivity(intent);
+        }
     }
 
     @Override
@@ -61,7 +73,7 @@ public class CanvasView extends SurfaceView implements SurfaceHolder.Callback {
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
         try {
-        this.gt.setRunning(false);
+            this.gt.setRunning(false);
         // Parent thread must wait until the end of GameThread.
         this.gt.join();
         } catch (InterruptedException e) {

@@ -23,8 +23,10 @@ public class HighScoreActivity extends AppCompatActivity {
         setContentView(R.layout.activity_high_score);
 
         this.best = getBestScore();
-        Random r = new Random();
-        current = r.nextInt(100);
+        Bundle b = getIntent().getExtras();
+        if(b != null)
+            current = b.getInt("key");
+
         Log.d("DEBUG current:", Integer.toString(this.current));
         Log.d("DEBUG best:", Integer.toString(this.best));
         if (this.best < current) {

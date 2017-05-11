@@ -8,11 +8,15 @@ package com.example.ad4ma.bogyo;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
+import java.util.Random;
+
 class GameThread extends Thread {
 
     private final CanvasView canvasView;
     private final SurfaceHolder surfaceHolder;
     private boolean running;
+    long startTime;
+    long endTime;
 
     public GameThread(CanvasView canvasView, SurfaceHolder surfaceHolder) {
         this.canvasView = canvasView;
@@ -21,7 +25,7 @@ class GameThread extends Thread {
 
     @Override
     public void run() {
-        long startTime = System.nanoTime();
+        startTime = System.nanoTime();
 
         while (running) {
             Canvas canvas = null;

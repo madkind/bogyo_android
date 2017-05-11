@@ -56,25 +56,26 @@ public class PlayerObject extends GameObject {
     }
 
     private boolean collisionWithRect(Rectangle rect) {
+        //double speedAndHeight = rect.getHeight() ;// - this.verticalSpeed;
         double distX = Math.abs(this.getX() - rect.getX() - rect.getWidth() / 2);
-        double distY = Math.abs(this.getY() - rect.getY() - (rect.getHeight() +this.verticalSpeed) / 2);
+        double distY = Math.abs(this.getY() + verticalSpeed - rect.getY() -  rect.getHeight() / 2);
 
         if (distX > (rect.getWidth() / 2 + this.getRadius())) {
             return false;
         }
-        if (distY > ((rect.getHeight() +this.verticalSpeed) / 2 + this.getRadius())) {
+        if (distY > ( rect.getHeight() / 2 + this.getRadius())) {
             return false;
         }
 
         if (distX <= (rect.getWidth() / 2)) {
             return true;
         }
-        if (distY <= ((rect.getHeight() +this.verticalSpeed) / 2)) {
+        if (distY <= (rect.getHeight() / 2)) {
             return true;
         }
 
         double dx = distX - rect.getWidth() / 2;
-        double dy = distY - (rect.getHeight() +(float)this.verticalSpeed) / 2;
+        double dy = distY - rect.getHeight() / 2;
 
         return (dx * dx + dy * dy <= (getRadius() * getRadius()));
     }

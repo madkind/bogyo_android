@@ -3,12 +3,19 @@ package com.example.ad4ma.bogyo;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.content.Context;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 
 /**
  * Created by hallgato on 2017-04-20.
  */
 
-public class PlayerObject extends GameObject {
+public class PlayerObject extends GameObject implements SensorEventListener {
 
     private final GameManager gm;
     private final Paint p;
@@ -16,12 +23,22 @@ public class PlayerObject extends GameObject {
     private double horizontalSpeed = 25;
     private boolean alive;
 
-    public PlayerObject(@SuppressWarnings("SameParameterValue") int x, @SuppressWarnings("SameParameterValue") int y, int radius, GameManager gm) {
+    private SensorManager sensorMgr;
+    private final Sensor mAccelerometer;
+    private double speedfromsensor;
+
+    public PlayerObject(@SuppressWarnings("SameParameterValue") int x, @SuppressWarnings("SameParameterValue") int y, int radius, GameManager gm, Context context ) {
         super(x, y, radius, radius);
         this.gm = gm;
         p = new Paint();
         p.setColor(Color.YELLOW);
         this.alive = true;
+
+        sensorMgr=(SensorManager)context.getSystemService(Context.SENSOR_SERVICE);
+        mAccelerometer = this.sensorMgr.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        this.sensorMgr.registerListener((SensorEventListener) this,
+                mAccelerometer,
+                SensorManager.SENSOR_DELAY_GAME);
     }
 
     @Override
@@ -51,8 +68,8 @@ public class PlayerObject extends GameObject {
 
             if (nextTile.getY()>this.getY()+getRadius()/4)
                 verticalSpeed = -Math.abs(verticalSpeed) /2;
-            else
-                this.horizontalSpeed = -this.horizontalSpeed;
+            //else
+            //    this.horizontalSpeed = -this.horizontalSpeed;
 
         } else {
 
@@ -61,9 +78,10 @@ public class PlayerObject extends GameObject {
          }
 
         //mock horizontal movement
-        if (this.getX() < 200 || this.getX() > ConfigurationManager.getScreenWidth() - 200)
+        /*if (this.getX() < 200 || this.getX() > ConfigurationManager.getScreenWidth() - 200)
             this.horizontalSpeed = -this.horizontalSpeed;
-        this.modX((int) horizontalSpeed);
+        this.modX((int) horizontalSpeed);*/
+        this.modX((int)speedfromsensor*3);
     }
 
     private int getRadius() {
@@ -120,5 +138,29 @@ public class PlayerObject extends GameObject {
 
     public boolean isAlive() {
         return alive;
+    }
+
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        //update((int)event.values[2]);
+        speedfromsensor=event.values[2];
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
+
+    public void onPause()
+    {
+        sensorMgr.unregisterListener((SensorEventListener) this);
+    }
+
+    public void onResume()
+    {
+        sensorMgr.registerListener((SensorEventListener) this,
+                mAccelerometer,
+                SensorManager.SENSOR_DELAY_GAME);
     }
 }

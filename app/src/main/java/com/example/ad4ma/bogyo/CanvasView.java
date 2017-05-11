@@ -45,7 +45,7 @@ public class CanvasView extends SurfaceView implements SurfaceHolder.Callback {
     // Implements method of SurfaceHolder.Callback
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        this.gm = new GameManager();
+        this.gm = new GameManager(this.getContext());
         this.gt = new GameThread(this, holder);
         this.gt.setRunning(true);
         this.gt.start();

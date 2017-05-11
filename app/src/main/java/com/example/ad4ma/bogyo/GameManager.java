@@ -1,5 +1,7 @@
 package com.example.ad4ma.bogyo;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 
 /**
@@ -9,7 +11,7 @@ import java.util.ArrayList;
 class GameManager {
     final ArrayList<GameObject> gameObjects;
     PlayerObject player;
-    GameManager() {
+    GameManager(Context context) {
         gameObjects = new ArrayList<>();
         int tileCount = 5;
         int screenHeight = ConfigurationManager.getScreenHeight();
@@ -19,7 +21,7 @@ class GameManager {
         while (tileCount > i)
             gameObjects.add(new TileObject(0, i++ * (screenHeight / tileCount), screenWidth, screenHeight / 30));
 
-        player = new PlayerObject(500, 500, screenHeight / 20, this);
+        player = new PlayerObject(500, 500, screenHeight / 20, this, context);
         gameObjects.add(player);
     }
 

@@ -47,6 +47,9 @@ public abstract class GameObject {
     void modX(int i) {
         this.x += i;
     }
+    public void setX(int x) {
+        this.x = x;
+    }
 
     public abstract void draw(Canvas canvas);
 

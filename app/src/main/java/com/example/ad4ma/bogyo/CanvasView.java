@@ -60,18 +60,23 @@ public class CanvasView extends SurfaceView implements SurfaceHolder.Callback {
     // Implements method of SurfaceHolder.Callback
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
-        boolean retry = true;
-        //noinspection ConstantConditions
-        while (retry) {
-            try {
-                this.gt.setRunning(false);
-                // Parent thread must wait until the end of GameThread.
-                this.gt.join();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            retry = true;
+        try {
+        this.gt.setRunning(false);
+        // Parent thread must wait until the end of GameThread.
+        this.gt.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
+    public void Pause() {
+        if(this.gt!=null) {
+            this.gt.setRunning(false);
+        }
+    }
+
+    public void Resume(){
+        if(this.gt!=null)
+        this.gt.setRunning(true);
+    }
 }

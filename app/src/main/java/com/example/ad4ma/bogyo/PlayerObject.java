@@ -14,12 +14,14 @@ public class PlayerObject extends GameObject {
     private final Paint p;
     private double verticalSpeed;
     private double horizontalSpeed = 25;
+    private boolean alive;
 
     public PlayerObject(@SuppressWarnings("SameParameterValue") int x, @SuppressWarnings("SameParameterValue") int y, int radius, GameManager gm) {
         super(x, y, radius, radius);
         this.gm = gm;
         p = new Paint();
         p.setColor(Color.YELLOW);
+        this.alive = true;
     }
 
     @Override
@@ -30,6 +32,19 @@ public class PlayerObject extends GameObject {
     @Override
     public void update() {
         TileObject nextTile = getNextTile();
+
+        if (this.getY()< this.getRadius())
+        {
+            this.alive = false;
+            return;
+        }
+
+        if(this.getY()>ConfigurationManager.getScreenHeight()){
+            this.verticalSpeed = 0;
+            this.setX(ConfigurationManager.getScreenWidth()/2);
+            this.setY(ConfigurationManager.getScreenHeight()/2);
+            return;
+        }
 
         if (collision(nextTile)) {
             this.setY(nextTile.getY() - this.getRadius());
@@ -103,4 +118,7 @@ public class PlayerObject extends GameObject {
         return toReturn;
     }
 
+    public boolean isAlive() {
+        return alive;
+    }
 }

@@ -1,7 +1,5 @@
 package com.example.ad4ma.bogyo;
 
-import android.graphics.Point;
-
 /**
  * Created by ad4ma on 2017. 04. 19..
  */

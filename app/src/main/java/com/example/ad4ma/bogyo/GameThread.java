@@ -8,8 +8,6 @@ package com.example.ad4ma.bogyo;
 import android.graphics.Canvas;
 import android.view.SurfaceHolder;
 
-import java.util.Random;
-
 class GameThread extends Thread {
 
     private final CanvasView canvasView;

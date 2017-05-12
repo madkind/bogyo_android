@@ -13,7 +13,7 @@ public class BoostObject extends GameObject {
 
     private final Paint p;
 
-    private int boostValue;
+    private final int boostValue;
 
     public BoostObject(int x, int y, int radius, int boostType) {
         super(x, y, radius, radius);

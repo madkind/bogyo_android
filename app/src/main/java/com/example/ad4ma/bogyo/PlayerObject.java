@@ -21,7 +21,7 @@ public class PlayerObject extends GameObject implements SensorEventListener {
     private double horizontalSpeed = 25;
     private boolean alive;
 
-    private SensorManager sensorMgr;
+    private final SensorManager sensorMgr;
     private final Sensor mAccelerometer;
     private double speedfromsensor;
 
@@ -34,7 +34,7 @@ public class PlayerObject extends GameObject implements SensorEventListener {
 
         sensorMgr=(SensorManager)context.getSystemService(Context.SENSOR_SERVICE);
         mAccelerometer = this.sensorMgr.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        this.sensorMgr.registerListener((SensorEventListener) this,
+        this.sensorMgr.registerListener(this,
                 mAccelerometer,
                 SensorManager.SENSOR_DELAY_GAME);
     }
@@ -112,11 +112,7 @@ public class PlayerObject extends GameObject implements SensorEventListener {
     }
 
     private boolean collision(TileObject to) {
-        if (to==null)
-            return false;
-
-        return collisionWithRect(to.getLeftRec())
-            || collisionWithRect(to.getRightRec());
+        return to != null && (collisionWithRect(to.getLeftRec()) || collisionWithRect(to.getRightRec()));
 
     }
 
@@ -152,12 +148,12 @@ public class PlayerObject extends GameObject implements SensorEventListener {
 
     public void onPause()
     {
-        sensorMgr.unregisterListener((SensorEventListener) this);
+        sensorMgr.unregisterListener(this);
     }
 
     public void onResume()
     {
-        sensorMgr.registerListener((SensorEventListener) this,
+        sensorMgr.registerListener(this,
                 mAccelerometer,
                 SensorManager.SENSOR_DELAY_GAME);
     }

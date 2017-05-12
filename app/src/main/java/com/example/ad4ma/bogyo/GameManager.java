@@ -11,11 +11,11 @@ import java.util.Random;
 
 class GameManager {
     final ArrayList<GameObject> gameObjects;
-    int screenHeight = ConfigurationManager.getViewHeight();
-    int screenWidth = ConfigurationManager.getViewWidth();
-    Random r = new Random();
-    PlayerObject player;
-    Context context;
+    private final int screenHeight = ConfigurationManager.getViewHeight();
+    private final int screenWidth = ConfigurationManager.getViewWidth();
+    private final Random r = new Random();
+    final PlayerObject player;
+    private final Context context;
 
     GameManager(Context context) {
         gameObjects = new ArrayList<>();
@@ -33,7 +33,7 @@ class GameManager {
     }
 
 
-    void addBooster(int posX, int posY, int type) {
+    private void addBooster(int posX, int posY, int type) {
         gameObjects.add(new BoostObject(posX, posY, screenHeight / 20, type));
     }
 

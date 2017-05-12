@@ -8,8 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import java.util.Random;
-
 public class HighScoreActivity extends AppCompatActivity {
     private final String PrefFileName = "Scores";
     private int best = 0;

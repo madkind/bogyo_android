@@ -6,7 +6,7 @@ import android.graphics.Canvas;
  * Created by ad4ma on 2017. 04. 19..
  */
 
-public abstract class GameObject {
+abstract class GameObject {
 
     final int width;
     private final int height;
@@ -47,7 +47,7 @@ public abstract class GameObject {
     void modX(int i) {
         this.x += i;
     }
-    public void setX(int x) {
+    void setX(int x) {
         this.x = x;
     }
 

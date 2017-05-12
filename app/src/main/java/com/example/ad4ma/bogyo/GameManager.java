@@ -1,8 +1,6 @@
 package com.example.ad4ma.bogyo;
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -13,8 +11,8 @@ import java.util.Random;
 
 class GameManager {
     final ArrayList<GameObject> gameObjects;
-    int screenHeight = ConfigurationManager.getScreenHeight();
-    int screenWidth = ConfigurationManager.getScreenWidth();
+    int screenHeight = ConfigurationManager.getViewHeight();
+    int screenWidth = ConfigurationManager.getViewWidth();
     Random r = new Random();
     PlayerObject player;
     Context context;
@@ -23,8 +21,8 @@ class GameManager {
         gameObjects = new ArrayList<>();
         int tileCount = 5;
         this.context = context;
-        //int screenHeight = ConfigurationManager.getScreenHeight();
-        //int screenWidth = ConfigurationManager.getScreenWidth();
+        //int screenHeight = ConfigurationManager.getViewHeight();
+        //int screenWidth = ConfigurationManager.getViewWidth();
         int i = 0;
 
         while (tileCount > i)

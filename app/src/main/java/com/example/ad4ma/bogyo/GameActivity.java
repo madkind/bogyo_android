@@ -1,5 +1,6 @@
 package com.example.ad4ma.bogyo;
 
+import android.content.res.Resources;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.os.PersistableBundle;
@@ -12,13 +13,7 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        Display display = getWindowManager().getDefaultDisplay();
-        Point size = new Point();
-        display.getSize(size);
-
-
-        ConfigurationManager.Configure(size, 5);
+        this.setTheme(R.style.Theme_AppCompat_NoActionBar);
          cv = new CanvasView(this);
         setContentView(cv);
     }

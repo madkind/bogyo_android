@@ -44,7 +44,7 @@ public class TileObject extends GameObject {
         this.modY(-ConfigurationManager.getTileSpeed());
 
         if (y < 0){
-            setY(ConfigurationManager.getScreenHeight());
+            setY(ConfigurationManager.getViewHeight());
             generateGaps();
         }
     }

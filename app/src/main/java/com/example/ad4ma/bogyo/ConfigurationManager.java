@@ -8,22 +8,24 @@ import android.graphics.Point;
 
 class ConfigurationManager {
 
-    private static Point screenSize;
+    private static int viewWidth;
+    private static int viewHeight;
 
     private static int tileSpeed;
 
-    public static void Configure(Point screenSize, @SuppressWarnings("SameParameterValue") int tileSpeed) {
-        ConfigurationManager.screenSize = screenSize;
+    public static void Configure(int width, int height, int tileSpeed) {
+       ConfigurationManager.viewWidth = width;
+        ConfigurationManager.viewHeight = height;
         ConfigurationManager.tileSpeed = tileSpeed;
     }
 
 
-    public static int getScreenHeight() {
-        return screenSize.y;
+    public static int getViewHeight() {
+       return viewHeight;
     }
 
-    public static int getScreenWidth() {
-        return screenSize.x;
+    public static int getViewWidth() {
+       return viewWidth;
     }
 
     public static int getTileSpeed() {

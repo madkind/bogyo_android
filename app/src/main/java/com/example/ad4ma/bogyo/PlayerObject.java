@@ -8,10 +8,6 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.os.Build;
-import android.os.Debug;
-import android.support.annotation.RequiresApi;
-import android.util.Log;
 
 /**
  * Created by hallgato on 2017-04-20.
@@ -58,10 +54,10 @@ public class PlayerObject extends GameObject implements SensorEventListener {
             return;
         }
 
-        if(this.getY()>ConfigurationManager.getScreenHeight()){
+        if(this.getY()>ConfigurationManager.getViewHeight()){
             this.verticalSpeed = 0;
-            this.setX(ConfigurationManager.getScreenWidth()/2);
-            this.setY(ConfigurationManager.getScreenHeight()/2);
+            this.setX(ConfigurationManager.getViewWidth()/2);
+            this.setY(ConfigurationManager.getViewHeight()/2);
             return;
         }
         //TODO booster felvételét megoldani
@@ -80,7 +76,7 @@ public class PlayerObject extends GameObject implements SensorEventListener {
          }
 
         //mock horizontal movement
-        /*if (this.getX() < 200 || this.getX() > ConfigurationManager.getScreenWidth() - 200)
+        /*if (this.getX() < 200 || this.getX() > ConfigurationManager.getViewWidth() - 200)
             this.horizontalSpeed = -this.horizontalSpeed;
         this.modX((int) horizontalSpeed);*/
         this.modX((int)speedfromsensor*-4);

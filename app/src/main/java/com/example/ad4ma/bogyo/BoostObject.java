@@ -4,8 +4,6 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 
-import java.util.Random;
-
 /**
  * Created by spara on 2017. 05. 11..
  */
@@ -46,7 +44,7 @@ public class BoostObject extends GameObject {
         this.modY(-ConfigurationManager.getTileSpeed());
 
         if (y < 0){
-            setY(ConfigurationManager.getScreenHeight());
+            setY(ConfigurationManager.getViewHeight());
         }
     }
 }

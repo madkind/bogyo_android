@@ -8,6 +8,10 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.Debug;
+import android.provider.Settings;
+import android.util.Log;
+
 
 /**
  * Created by hallgato on 2017-04-20.
@@ -56,22 +60,31 @@ public class PlayerObject extends GameObject implements SensorEventListener {
 
         if(this.getY()>ConfigurationManager.getViewHeight()){
             this.verticalSpeed = 0;
-            this.setX(ConfigurationManager.getViewWidth()/2);
-            this.setY(ConfigurationManager.getViewHeight()/2);
-            return;
+            //this.setX(ConfigurationManager.getViewWidth()/2);
+            this.setY(ConfigurationManager.getViewHeight());
+            //return;
         }
-        //TODO booster felvételét megoldani
+
+        if(this.getX()>ConfigurationManager.getViewWidth()){
+            this.setX(ConfigurationManager.getViewWidth());
+            //return;
+        }
+        if(this.getX()<0){
+            this.setX(0);
+            //return;
+        }
+
         if (collision(nextTile)) {
             this.setY(nextTile.getY() - this.getRadius());
 
             if (nextTile.getY()>this.getY()+getRadius()/4)
-                verticalSpeed = -Math.abs(verticalSpeed) /2;
+                verticalSpeed = (-Math.abs(verticalSpeed) /2);
             //else
             //    this.horizontalSpeed = -this.horizontalSpeed;
 
         } else {
 
-            verticalSpeed = verticalSpeed + 5;
+            verticalSpeed = (verticalSpeed + 5);
             this.modY((int) verticalSpeed);
          }
 
@@ -84,6 +97,30 @@ public class PlayerObject extends GameObject implements SensorEventListener {
 
     private int getRadius() {
         return this.getWidth() / 2;
+    }
+
+    public boolean collisionWithBooster(GameObject obj) {
+        double distX = Math.abs(this.getX() - obj.getX() - obj.getWidth() / 2);
+        double distY = Math.abs(this.getY() + verticalSpeed - obj.getY() -  obj.getHeight() / 2);
+
+        if (distX > (obj.getWidth() / 2 + this.getRadius())) {
+            return false;
+        }
+        if (distY > ( obj.getHeight() / 2 + this.getRadius())) {
+            return false;
+        }
+
+        if (distX <= (obj.getWidth() / 2)) {
+            return true;
+        }
+        if (distY <= (obj.getHeight() / 2)) {
+            return true;
+        }
+
+        double dx = distX - obj.getWidth() / 2;
+        double dy = distY - obj.getHeight() / 2;
+
+        return (dx * dx + dy * dy <= (getRadius() * getRadius()));
     }
 
     private boolean collisionWithRect(Rectangle rect) {

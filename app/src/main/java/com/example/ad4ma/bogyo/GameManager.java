@@ -1,6 +1,7 @@
 package com.example.ad4ma.bogyo;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -16,6 +17,7 @@ class GameManager {
     private final Random r = new Random();
     final PlayerObject player;
     private final Context context;
+    public final long startTime;
 
     GameManager(Context context) {
         gameObjects = new ArrayList<>();
@@ -30,6 +32,7 @@ class GameManager {
 
         player = new PlayerObject(500, 500, screenHeight / 20, this, context);
         gameObjects.add(player);
+        startTime = System.currentTimeMillis();
     }
 
 
@@ -39,13 +42,32 @@ class GameManager {
 
     void update() {
         if(player.isAlive()) {
+            long now = System.currentTimeMillis();
+            if(ConfigurationManager.boosted && (now - ConfigurationManager.lastboosted) > 10000 )
+            {
+                ConfigurationManager.setDefaultTileSpeed();
+            }
+            if((now - ConfigurationManager.gameStarted)> 25000 ) {
+                Log.d("levelUp", "levelup");
+                ConfigurationManager.speedUp();
+            }
             for (GameObject g : gameObjects) {
                 g.update();
                 if (g instanceof TileObject && g.y == screenHeight && r.nextInt(10) == 1) {
                     addBooster(r.nextInt(screenWidth), screenHeight - g.getHeight(), r.nextInt(2));
                 }
-                if (g instanceof BoostObject && g.y < 0) {
-                    this.gameObjects.remove(g);
+                if (g instanceof BoostObject) {
+
+                    if(player.collisionWithBooster(g))
+                    {
+                        int boost = ((BoostObject)g).boostValue;
+                        ConfigurationManager.setTileSpeed(boost);
+                        this.gameObjects.remove(g);
+
+                    }
+                    else if (g.y < 0) {
+                        this.gameObjects.remove(g);
+                    }
                 }
             }
         }

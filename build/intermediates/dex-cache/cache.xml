@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="G:\Suli\beadando\bogyo_android\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="93b3e308192ff13cd52804bb84cc6b77669ab3d9">
+        <dex dex="G:\Suli\beadando\bogyo_android\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_aa4fc5d5fe8965db06994bbfbae22b63dbecef0b\classes.dex" />
+    </item>
+
+</items>

@@ -6,6 +6,7 @@ package com.example.ad4ma.bogyo;
 
 
 import android.graphics.Canvas;
+import android.util.Log;
 import android.view.SurfaceHolder;
 
 class GameThread extends Thread {
@@ -13,8 +14,6 @@ class GameThread extends Thread {
     private final CanvasView canvasView;
     private final SurfaceHolder surfaceHolder;
     private boolean running;
-    long startTime;
-    long endTime;
 
     public GameThread(CanvasView canvasView, SurfaceHolder surfaceHolder) {
         this.canvasView = canvasView;
@@ -23,7 +22,7 @@ class GameThread extends Thread {
 
     @Override
     public void run() {
-        startTime = System.nanoTime();
+        long startTime = System.currentTimeMillis();
 
         while (running) {
             Canvas canvas = null;
@@ -42,20 +41,19 @@ class GameThread extends Thread {
                     this.surfaceHolder.unlockCanvasAndPost(canvas);
                 }
             }
-            long now = System.nanoTime();
-            long waitTime = (now - startTime) / 100000000;
+            long now = System.currentTimeMillis();
+            long waitTime = (now - startTime) / 100;
             if (waitTime < 5) {
                 waitTime = 5; // Millisecond.
             }
-
-            System.out.print(" Wait Time=" + waitTime);
+            Log.d("Wait Time=", Long.toString(waitTime));
 
             try {
                 sleep(waitTime);
             } catch (InterruptedException e) {
                 System.out.print(e.getLocalizedMessage());
             }
-            startTime = System.nanoTime();
+            startTime = System.currentTimeMillis();
             System.out.print(".");
         }
     }
@@ -63,4 +61,5 @@ class GameThread extends Thread {
     public void setRunning(boolean running) {
         this.running = running;
     }
+
 }

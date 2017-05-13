@@ -13,19 +13,20 @@ public class BoostObject extends GameObject {
 
     private final Paint p;
 
-    private final int boostValue;
+    public final int boostValue;
 
     public BoostObject(int x, int y, int radius, int boostType) {
         super(x, y, radius, radius);
 
         p = new Paint();
         p.setStyle(Paint.Style.FILL);
-        p.setColor(Color.CYAN);
         if(boostType == 1)
         {
-            boostValue = -5;
+            p.setColor(Color.GREEN);
+            boostValue = -2;
         } else {
-            boostValue = +5;
+            p.setColor(Color.RED);
+            boostValue = +2;
         }
     }
 
@@ -42,9 +43,5 @@ public class BoostObject extends GameObject {
     public void update() {
 
         this.modY(-ConfigurationManager.getTileSpeed());
-
-        if (y < 0){
-            setY(ConfigurationManager.getViewHeight());
-        }
     }
 }

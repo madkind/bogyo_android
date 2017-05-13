@@ -10,8 +10,8 @@ import android.widget.TextView;
 
 public class HighScoreActivity extends AppCompatActivity {
     private final String PrefFileName = "Scores";
-    private int best = 0;
-    private int current = 0;
+    private long best = 0;
+    private long current = 0;
 
 
     @Override
@@ -23,10 +23,10 @@ public class HighScoreActivity extends AppCompatActivity {
         this.best = getBestScore();
         Bundle b = getIntent().getExtras();
         if(b != null)
-            current = b.getInt("key");
+            current = b.getLong("score");
 
-        Log.d("DEBUG current:", Integer.toString(this.current));
-        Log.d("DEBUG best:", Integer.toString(this.best));
+        Log.d("DEBUG current:", Long.toString(this.current));
+        Log.d("DEBUG best:", Long.toString(this.best));
         if (this.best < current) {
 
             setBestScore(current);
@@ -35,10 +35,10 @@ public class HighScoreActivity extends AppCompatActivity {
         }
 
         TextView currentScoreView = (TextView) findViewById(R.id.currentScore);
-        currentScoreView.setText(Integer.toString(this.current));
+        currentScoreView.setText(Long.toString(this.current));
 
         TextView bestScoreView = (TextView) findViewById(R.id.bestScore);
-        bestScoreView.setText(Integer.toString(this.best));
+        bestScoreView.setText(Long.toString(this.best));
 
     }
 
@@ -57,12 +57,15 @@ public class HighScoreActivity extends AppCompatActivity {
         return settings.getInt("BestScore", 0);
     }
 
-    private void setBestScore(int score) {
+    private void setBestScore(long score) {
 
         SharedPreferences settings = getSharedPreferences(this.PrefFileName, 0);
         SharedPreferences.Editor editor = settings.edit();
-        editor.putInt("BestScore", score);
+        editor.putLong("BestScore", score);
         editor.apply();
     }
 
+    protected void onPause() {
+        super.onPause();
+    }
 }

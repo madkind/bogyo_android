@@ -33,13 +33,14 @@ public class CanvasView extends SurfaceView implements SurfaceHolder.Callback {
 
     public void update() {
         gm.update();
+
         if(!gm.player.isAlive())
         {
             gt.setRunning(false);
+
             Intent intent = new Intent(super.getContext(), HighScoreActivity.class);
             Bundle b = new Bundle();
-            //TODO nem jó a pont számolás valamiért. ki kell debugolni
-            b.putInt("key", (int) ((System.nanoTime() - gt.startTime )/1000000));
+            b.putLong("score", (System.currentTimeMillis() - gm.startTime )/100);
             intent.putExtras(b);
             super.getContext().startActivity(intent);
         }
